@@ -16,8 +16,8 @@ public class MeshData
 
 	public MeshData(float _x, float _y, Vector2 uv)
 	{
-		x = _x;
-		y = _y;
+		x = 0;//_x;
+		y = 0;//_y;
 
 		vertices = new Vector3[4];
 		triangles = new int[6];

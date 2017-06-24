@@ -2,28 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeshObject : MonoBehaviour
+public enum eBlockType { Grass, Stone };
+
+public class Block : MonoBehaviour
 {
 	private Mesh _mesh;
 	private MeshData _mData;
-	// private BlockData _bData;
+	private BlockData _bData;
 
 	private void Awake()
 	{
 		_mesh = GetComponent<MeshFilter>().mesh;
 	}
 
-	public void Init(eType type, int x, int y)
+	public void Init(eBlockType type, int x, int y)
 	{
 		// TODO move this out of here
 		Vector2 uv = Vector2.zero;
 		switch (type)
 		{
-		case eType.Grass:
+		case eBlockType.Grass:
 			uv = new Vector2(0, 1);
 			break;
 
-		case eType.Stone:
+		case eBlockType.Stone:
 			uv = new Vector2(0, 0);
 			break;
 
@@ -31,6 +33,9 @@ public class MeshObject : MonoBehaviour
 			Debug.LogErrorFormat("Invalid type {0}", type);
 			break;
 		}
+
+		// TODO
+		//_bData = GetBlockDataForType(type);
 
 		_mData = new MeshData(x, y, uv);
 		_mesh.Clear();
